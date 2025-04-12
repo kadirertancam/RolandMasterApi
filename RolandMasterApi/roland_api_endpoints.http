@@ -1,0 +1,211 @@
+### RolandMasterApi - HTTP Test Dosyası
+### Bu dosyayı Visual Studio Code'da "REST Client" eklentisi ile kullanabilirsiniz.
+
+@baseUrl = http://localhost:5000
+@deviceId = 00155D4FA27F
+
+### Temel Efekt Kontrolleri (On/Off)
+
+### Robot Efektini Aç
+POST {{baseUrl}}/api/effect-toggles/robot/{{deviceId}}/on
+Content-Type: application/json
+
+### Robot Efektini Kapat
+POST {{baseUrl}}/api/effect-toggles/robot/{{deviceId}}/off
+Content-Type: application/json
+
+### Megaphone Efektini Aç
+POST {{baseUrl}}/api/effect-toggles/megaphone/{{deviceId}}/on
+Content-Type: application/json
+
+### Megaphone Efektini Kapat
+POST {{baseUrl}}/api/effect-toggles/megaphone/{{deviceId}}/off
+Content-Type: application/json
+
+### Vocoder Efektini Aç
+POST {{baseUrl}}/api/effect-toggles/vocoder/{{deviceId}}/on
+Content-Type: application/json
+
+### Vocoder Efektini Kapat
+POST {{baseUrl}}/api/effect-toggles/vocoder/{{deviceId}}/off
+Content-Type: application/json
+
+### Harmony Efektini Aç
+POST {{baseUrl}}/api/effect-toggles/harmony/{{deviceId}}/on
+Content-Type: application/json
+
+### Harmony Efektini Kapat
+POST {{baseUrl}}/api/effect-toggles/harmony/{{deviceId}}/off
+Content-Type: application/json
+
+### Özel Efekt Kontrolleri
+
+### Efekt 1'i Çalıştır
+POST {{baseUrl}}/api/special-effects/effect1/{{deviceId}}
+Content-Type: application/json
+
+### Efekt 2'yi Çalıştır
+POST {{baseUrl}}/api/special-effects/effect2/{{deviceId}}
+Content-Type: application/json
+
+### Efekt 3'ü Çalıştır
+POST {{baseUrl}}/api/special-effects/effect3/{{deviceId}}
+Content-Type: application/json
+
+### Efekt 4'ü Çalıştır
+POST {{baseUrl}}/api/special-effects/effect4/{{deviceId}}
+Content-Type: application/json
+
+### Slider Kontrolleri
+
+### Key (Nota) Ayarını Değiştir
+POST {{baseUrl}}/api/sliders/key/{{deviceId}}
+Content-Type: application/json
+
+{
+  "value": 9
+}
+
+### Mikrofon Hassasiyet Ayarını Değiştir
+POST {{baseUrl}}/api/sliders/micsens/{{deviceId}}
+Content-Type: application/json
+
+{
+  "value": 70
+}
+
+### Ses Seviyesi Ayarını Değiştir
+POST {{baseUrl}}/api/sliders/volume/{{deviceId}}
+Content-Type: application/json
+
+{
+  "value": 100
+}
+
+### Reverb Seviyesi Ayarını Değiştir
+POST {{baseUrl}}/api/sliders/reverb/{{deviceId}}
+Content-Type: application/json
+
+{
+  "value": 64
+}
+
+### Balance Seviyesi Ayarını Değiştir
+POST {{baseUrl}}/api/sliders/balance/{{deviceId}}
+Content-Type: application/json
+
+{
+  "value": 64
+}
+
+### Formant Seviyesi Ayarını Değiştir
+POST {{baseUrl}}/api/sliders/formant/{{deviceId}}
+Content-Type: application/json
+
+{
+  "value": 64
+}
+
+### Pitch Seviyesi Ayarını Değiştir
+POST {{baseUrl}}/api/sliders/pitch/{{deviceId}}
+Content-Type: application/json
+
+{
+  "value": 8192
+}
+
+### Efekt Parametreleri ile Robot Efektini Uygula
+POST {{baseUrl}}/api/effects/robot/{{deviceId}}
+Content-Type: application/json
+
+{
+  "octave": 2,
+  "feedbackSwitch": 1,
+  "feedbackResonance": 120,
+  "feedbackLevel": 160
+}
+
+### Harmony Efektini Uygula
+POST {{baseUrl}}/api/effects/harmony/{{deviceId}}
+Content-Type: application/json
+
+{
+  "h1Level": 200,
+  "h2Level": 150,
+  "h3Level": 100,
+  "h1Key": 0,
+  "h2Key": 4,
+  "h3Key": 7,
+  "h1Gender": 128,
+  "h2Gender": 128,
+  "h3Gender": 128
+}
+
+### Megaphone Efektini Uygula
+POST {{baseUrl}}/api/effects/megaphone/{{deviceId}}
+Content-Type: application/json
+
+{
+  "type": 0,
+  "param1": 100,
+  "param2": 150,
+  "param3": 200,
+  "param4": 180
+}
+
+### Vocoder Efektini Uygula
+POST {{baseUrl}}/api/effects/vocoder/{{deviceId}}
+Content-Type: application/json
+
+{
+  "type": 0,
+  "param1": 100,
+  "param2": 150,
+  "param3": 200,
+  "param4": 180
+}
+
+### Reverb Efektini Uygula
+POST {{baseUrl}}/api/effects/reverb/{{deviceId}}
+Content-Type: application/json
+
+{
+  "type": 0,
+  "param1": 100,
+  "param2": 150,
+  "param3": 200,
+  "param4": 180
+}
+
+### Komut Durumunu Sorgula
+GET {{baseUrl}}/api/commands/c8a6c3f0-5e2d-4f5a-94b7-b8b2e53c9b6a
+
+### Genel Komut Gönder
+POST {{baseUrl}}/api/commands
+Content-Type: application/json
+
+{
+  "targetDeviceId": "{{deviceId}}",
+  "effectType": "robot",
+  "parameters": {
+    "octave": 2,
+    "feedbackSwitch": 1,
+    "feedbackResonance": 120,
+    "feedbackLevel": 160
+  }
+}
+
+### Broadcast Komut Gönder
+POST {{baseUrl}}/api/commands/broadcast
+Content-Type: application/json
+
+{
+  "effectType": "reverb",
+  "parameters": {
+    "type": 0,
+    "param1": 100,
+    "param2": 150,
+    "param3": 200,
+    "param4": 180
+  }
+}

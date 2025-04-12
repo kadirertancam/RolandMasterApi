@@ -1,0 +1,153 @@
+/* Roland VT-4 API Özel Swagger Stili */
+.swagger-ui .topbar {
+    background-color: #444;
+    border-bottom: 3px solid #d06126;
+}
+
+.swagger-ui .topbar .download-url-wrapper .select-label select {
+    border: 2px solid #d06126;
+}
+
+.swagger-ui .info .title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #d06126;
+    font-size: 36px;
+}
+
+.swagger-ui .info > div {
+    margin: 0 0 15px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 4px;
+    border-left: 4px solid #d06126;
+}
+
+.swagger-ui .info .title small {
+    background-color: #d06126;
+}
+
+.swagger-ui .opblock .opblock-summary-method {
+    background-color: #d06126;
+}
+
+.swagger-ui .btn.execute {
+    background-color: #d06126;
+    color: #fff;
+    border-color: #c05116;
+}
+
+.swagger-ui .btn.execute:hover {
+    background-color: #c05116;
+}
+
+.swagger-ui .opblock.opblock-get {
+    border-color: #3c89c3;
+    background: rgba(60, 137, 195, 0.1);
+}
+
+.swagger-ui .opblock.opblock-post {
+    border-color: #7eb358;
+    background: rgba(126, 179, 88, 0.1);
+}
+
+.swagger-ui .opblock.opblock-delete {
+    border-color: #cf3030;
+    background: rgba(207, 48, 48, 0.1);
+}
+
+.swagger-ui .opblock.opblock-put {
+    border-color: #e2a03f;
+    background: rgba(226, 160, 63, 0.1);
+}
+
+.swagger-ui section.models {
+    border: 1px solid #d06126;
+}
+
+.swagger-ui section.models h4 {
+    color: #d06126;
+}
+
+.swagger-ui .model-title {
+    color: #d06126;
+}
+
+/* Türkçe metin yerine yazılacak yer tutucular */
+.swagger-ui .try-out__btn::after {
+    content: "Dene";
+    display: block;
+    visibility: visible;
+}
+
+.swagger-ui .try-out__btn {
+    color: transparent;
+}
+
+.swagger-ui .authorization__btn::after {
+    content: "Yetkilendir";
+    display: block;
+    visibility: visible;
+}
+
+.swagger-ui .authorization__btn {
+    color: transparent;
+}
+
+.swagger-ui button.btn.cancel::after {
+    content: "İptal";
+    display: block;
+    visibility: visible;
+}
+
+.swagger-ui button.btn.cancel {
+    color: transparent;
+}
+
+.swagger-ui button.btn.execute::after {
+    content: "Çalıştır";
+    display: block;
+    visibility: visible;
+}
+
+.swagger-ui button.btn.execute {
+    color: transparent;
+}
+
+.swagger-ui button.btn.clear::after {
+    content: "Temizle";
+    display: block;
+    visibility: visible;
+}
+
+.swagger-ui button.btn.clear {
+    color: transparent;
+}
+
+.swagger-ui .servers label select {
+    width: 100%;
+}
+
+/* Fazladan stil tanımlamaları */
+.swagger-ui .opblock-tag {
+    font-size: 18px;
+    border-bottom: 1px solid #d06126;
+}
+
+.swagger-ui table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.swagger-ui table th {
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #d06126;
+}
+
+.swagger-ui .parameter__name {
+    font-weight: bold;
+    color: #c05116;
+}
+
+.swagger-ui .parameter__required {
+    color: #cf3030;
+}

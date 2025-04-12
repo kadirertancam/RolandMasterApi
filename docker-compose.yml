@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  master-api:
+    build:
+      context: ./RolandMasterApi
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+      - "8443:443"
+    depends_on:
+      - redis
+    environment:
+      - ASPNETCORE_URLS=http://+:80;https://+:443
+      - REDIS_CONNECTION_STRING=redis:6379
+      - REDIS_PASSWORD=
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - roland-network
+
+  client-1:
+    build:
+      context: ./RolandClient
+      dockerfile: Dockerfile
+    depends_on:
+      - master-api
+      - redis
+    environment:
+      - ClientSettings__DeviceId=client1
+      - ClientSettings__DeviceName=VT4-Client-1
+      - ClientSettings__RedisConnectionString=redis:6379
+      - ClientSettings__ApiUrl=http://master-api:80
+      - DOTNET_ENVIRONMENT=Production
+    networks:
+      - roland-network
+    # Not: Gerçek bir uygulamada burada aşağıdaki gibi cihaz izinlerini de ekleyebilirsiniz
+    # devices:
+    #   - "/dev/snd:/dev/snd"
+
+  # Bu örnek için ek client servislerini ekleyebilirsiniz
+  # client-2:
+  #   build:
+  #     context: ./RolandClient
+  #     dockerfile: Dockerfile
+  #   depends_on:
+  #     - master-api
+  #     - redis
+  #   environment:
+  #     - ClientSettings__DeviceId=client2
+  #     - ClientSettings__DeviceName=VT4-Client-2
+  #     - ClientSettings__RedisConnectionString=redis:6379
+  #     - ClientSettings__ApiUrl=http://master-api:80
+  #     - DOTNET_ENVIRONMENT=Production
+  #   networks:
+  #     - roland-network
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - roland-network
+
+networks:
+  roland-network:
+    driver: bridge
+
+volumes:
+  redis-data:

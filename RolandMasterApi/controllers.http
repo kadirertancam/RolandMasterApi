@@ -1,0 +1,162 @@
+# Roland VT-4 API HTTP Test Dosyası
+@baseURL = http://localhost:8080
+
+### Cihaz İşlemleri
+
+### Tüm cihazları listele
+GET {{baseURL}}/api/devices
+Accept: application/json
+
+### Belirli bir cihazı getir
+GET {{baseURL}}/api/devices/device-001
+Accept: application/json
+
+### Yeni cihaz ekle
+POST {{baseURL}}/api/devices
+Content-Type: application/json
+
+{
+  "deviceName": "VT-4 Studio 1",
+  "macAddress": "00:11:22:33:44:55",
+  "midiDeviceId": 1
+}
+
+### Cihaz güncelle
+PUT {{baseURL}}/api/devices/device-001
+Content-Type: application/json
+
+{
+  "deviceName": "VT-4 Studio 1 (Güncellendi)",
+  "isActive": true,
+  "midiDeviceId": 1
+}
+
+### Cihazı sil
+DELETE {{baseURL}}/api/devices/device-001
+
+### Komut İşlemleri
+
+### Komut gönder
+POST {{baseURL}}/api/commands
+Content-Type: application/json
+
+{
+  "targetDeviceId": "device-001",
+  "effectType": "robot",
+  "parameters": {
+    "octave": 2,
+    "feedbackSwitch": 1,
+    "feedbackResonance": 120,
+    "feedbackLevel": 160
+  }
+}
+
+### Broadcast komut gönder (tüm cihazlara)
+POST {{baseURL}}/api/commands/broadcast
+Content-Type: application/json
+
+{
+  "effectType": "reverb",
+  "parameters": {
+    "type": 0,
+    "param1": 100,
+    "param2": 150,
+    "param3": 200,
+    "param4": 180
+  }
+}
+
+### Komut durumunu sorgula
+GET {{baseURL}}/api/commands/cmd-12345
+Accept: application/json
+
+### Efekt Komutları
+
+### Robot Efekti
+POST {{baseURL}}/api/commands/robot/device-001
+Content-Type: application/json
+
+{
+  "octave": 2,
+  "feedbackSwitch": 1,
+  "feedbackResonance": 120,
+  "feedbackLevel": 160
+}
+
+### Harmony Efekti
+POST {{baseURL}}/api/commands/harmony/device-001
+Content-Type: application/json
+
+{
+  "h1Level": 200,
+  "h2Level": 150,
+  "h3Level": 100,
+  "h1Key": 0,
+  "h2Key": 4,
+  "h3Key": 7,
+  "h1Gender": 128,
+  "h2Gender": 128,
+  "h3Gender": 128
+}
+
+### Megaphone Efekti
+POST {{baseURL}}/api/commands/megaphone/device-001
+Content-Type: application/json
+
+{
+  "type": 0,
+  "param1": 100,
+  "param2": 150,
+  "param3": 200,
+  "param4": 180
+}
+
+### Reverb Efekti
+POST {{baseURL}}/api/commands/reverb/device-001
+Content-Type: application/json
+
+{
+  "type": 0,
+  "param1": 100,
+  "param2": 150,
+  "param3": 200,
+  "param4": 180
+}
+
+### Vocoder Efekti
+POST {{baseURL}}/api/commands/vocoder/device-001
+Content-Type: application/json
+
+{
+  "type": 0,
+  "param1": 100,
+  "param2": 150,
+  "param3": 200,
+  "param4": 180
+}
+
+### Equalizer Efekti
+POST {{baseURL}}/api/commands/equalizer/device-001
+Content-Type: application/json
+
+{
+  "eqSwitch": 1,
+  "lowShelfFreq": 40,
+  "lowShelfGain": 20,
+  "lowMidFreq": 60,
+  "lowMidQ": 70,
+  "lowMidGain": 15,
+  "highMidFreq": 80,
+  "highMidQ": 70,
+  "highMidGain": 10,
+  "highShelfFreq": 100,
+  "highShelfGain": 20
+}
+
+### Dökümantasyon İşlemleri
+
+### API Dökümanı
+GET {{baseURL}}/api/docs
+
+### OpenAPI Şeması
+GET {{baseURL}}/api/docs/openapi

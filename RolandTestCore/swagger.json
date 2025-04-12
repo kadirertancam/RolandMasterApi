@@ -1,0 +1,559 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Roland VT-4 MIDI API",
+    "description": "Roland VT-4 efektlerini MIDI SysEx mesajları ile kontrol etmek için API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/midi/devices": {
+      "get": {
+        "tags": [
+          "MidiCihaz"
+        ],
+        "summary": "Mevcut tüm MIDI cihazlarını al",
+        "responses": {
+          "200": {
+            "description": "Mevcut MIDI cihazlarının listesi",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MidiDeviceModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/midi/initialize": {
+      "post": {
+        "tags": [
+          "MidiCihaz"
+        ],
+        "summary": "Bir MIDI cihazını başlat",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MidiInitializeModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "MIDI cihazı başarıyla başlatıldı"
+          },
+          "400": {
+            "description": "Geçersiz MIDI cihaz ID'si"
+          },
+          "500": {
+            "description": "MIDI cihazı başlatılırken hata oluştu"
+          }
+        }
+      }
+    },
+    "/api/effects/robot": {
+      "post": {
+        "tags": [
+          "Efektler"
+        ],
+        "summary": "Belirtilen parametreler ile Robot efektini uygula",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RobotModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Robot efekti başarıyla uygulandı"
+          },
+          "400": {
+            "description": "Geçersiz parametreler veya MIDI cihazı başlatılmadı"
+          },
+          "500": {
+            "description": "Robot efekti uygulanırken hata oluştu"
+          }
+        }
+      }
+    },
+    "/api/effects/harmony": {
+      "post": {
+        "tags": [
+          "Efektler"
+        ],
+        "summary": "Belirtilen parametreler ile Harmony efektini uygula",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HarmonyModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Harmony efekti başarıyla uygulandı"
+          },
+          "400": {
+            "description": "Geçersiz parametreler veya MIDI cihazı başlatılmadı"
+          },
+          "500": {
+            "description": "Harmony efekti uygulanırken hata oluştu"
+          }
+        }
+      }
+    },
+    "/api/effects/megaphone": {
+      "post": {
+        "tags": [
+          "Efektler"
+        ],
+        "summary": "Belirtilen parametreler ile Megafon efektini uygula",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MegaphoneModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Megafon efekti başarıyla uygulandı"
+          },
+          "400": {
+            "description": "Geçersiz parametreler veya MIDI cihazı başlatılmadı"
+          },
+          "500": {
+            "description": "Megafon efekti uygulanırken hata oluştu"
+          }
+        }
+      }
+    },
+    "/api/effects/reverb": {
+      "post": {
+        "tags": [
+          "Efektler"
+        ],
+        "summary": "Belirtilen parametreler ile Reverb efektini uygula",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReverbModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reverb efekti başarıyla uygulandı"
+          },
+          "400": {
+            "description": "Geçersiz parametreler veya MIDI cihazı başlatılmadı"
+          },
+          "500": {
+            "description": "Reverb efekti uygulanırken hata oluştu"
+          }
+        }
+      }
+    },
+    "/api/effects/vocoder": {
+      "post": {
+        "tags": [
+          "Efektler"
+        ],
+        "summary": "Belirtilen parametreler ile Vocoder efektini uygula",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VocoderModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vocoder efekti başarıyla uygulandı"
+          },
+          "400": {
+            "description": "Geçersiz parametreler veya MIDI cihazı başlatılmadı"
+          },
+          "500": {
+            "description": "Vocoder efekti uygulanırken hata oluştu"
+          }
+        }
+      }
+    },
+    "/api/effects/equalizer": {
+      "post": {
+        "tags": [
+          "Efektler"
+        ],
+        "summary": "Belirtilen parametreler ile Ekolayzer efektini uygula",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EqualizerModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ekolayzer efekti başarıyla uygulandı"
+          },
+          "400": {
+            "description": "Geçersiz parametreler veya MIDI cihazı başlatılmadı"
+          },
+          "500": {
+            "description": "Ekolayzer efekti uygulanırken hata oluştu"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MidiDeviceModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "MIDI cihaz ID'si"
+          },
+          "name": {
+            "type": "string",
+            "description": "MIDI cihaz adı"
+          }
+        }
+      },
+      "MidiInitializeModel": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "integer",
+            "description": "Başlatılacak MIDI cihaz ID'si",
+            "default": 1
+          }
+        }
+      },
+      "RobotModel": {
+        "type": "object",
+        "properties": {
+          "octave": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Oktav ayarı (0-3): 0=2AŞAĞI, 1=AŞAĞI, 2=SIFIR, 3=YUKARI",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "feedbackSwitch": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Geri besleme açık/kapalı (0-1)",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "feedbackResonance": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Geri besleme rezonans değeri (0-255)",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "feedbackLevel": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Geri besleme seviyesi (0-255)",
+            "minimum": 0,
+            "maximum": 255
+          }
+        }
+      },
+      "HarmonyModel": {
+        "type": "object",
+        "properties": {
+          "h1Level": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Harmony 1 seviyesi (0-255)",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "h2Level": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Harmony 2 seviyesi (0-255)",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "h3Level": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Harmony 3 seviyesi (0-255)",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "h1Key": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Harmony 1 tonu (0-11): 0=C, 1=C#, vb.",
+            "minimum": 0,
+            "maximum": 11
+          },
+          "h2Key": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Harmony 2 tonu (0-11): 0=C, 1=C#, vb.",
+            "minimum": 0,
+            "maximum": 11
+          },
+          "h3Key": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Harmony 3 tonu (0-11): 0=C, 1=C#, vb.",
+            "minimum": 0,
+            "maximum": 11
+          },
+          "h1Gender": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Harmony 1 cinsiyet (0-255)",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "h2Gender": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Harmony 2 cinsiyet (0-255)",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "h3Gender": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Harmony 3 cinsiyet (0-255)",
+            "minimum": 0,
+            "maximum": 255
+          }
+        }
+      },
+      "MegaphoneModel": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Megafon tipi (0-3): 0=Megafon, 1=Radyo, 2=BBD Chorus, 3=Strobo",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "param1": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 1 (0-255) - Anlamı megafon tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "param2": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 2 (0-255) - Anlamı megafon tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "param3": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 3 (0-255) - Anlamı megafon tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "param4": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 4 (0-255) - Anlamı megafon tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          }
+        }
+      },
+      "ReverbModel": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Reverb tipi (0-5): 0=Reverb, 1=Echo, 2=Delay, 3=Dub Echo, 4=Deep Reverb, 5=VT Reverb",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "param1": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 1 (0-255) - Anlamı reverb tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "param2": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 2 (0-255) - Anlamı reverb tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "param3": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 3 (0-255) - Anlamı reverb tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "param4": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 4 (0-255) - Anlamı reverb tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          }
+        }
+      },
+      "VocoderModel": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Vocoder tipi (0-4): 0=Vintage, 1=Advanced, 2=Talk Box, 3=Spell Toy",
+            "minimum": 0,
+            "maximum": 4
+          },
+          "param1": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 1 (0-255) - Anlamı vocoder tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "param2": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 2 (0-255) - Anlamı vocoder tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "param3": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 3 (0-255) - Anlamı vocoder tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          },
+          "param4": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parametre 4 (0-255) - Anlamı vocoder tipine göre değişir",
+            "minimum": 0,
+            "maximum": 255
+          }
+        }
+      },
+      "EqualizerModel": {
+        "type": "object",
+        "properties": {
+          "eqSwitch": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Ekolayzer açık/kapalı düğmesi (0-1)",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "lowShelfFreq": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Düşük raf frekansı (0-127)",
+            "minimum": 0,
+            "maximum": 127
+          },
+          "lowShelfGain": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Düşük raf kazancı (0-40)",
+            "minimum": 0,
+            "maximum": 40
+          },
+          "lowMidFreq": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Düşük-orta frekans (0-127)",
+            "minimum": 0,
+            "maximum": 127
+          },
+          "lowMidQ": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Düşük-orta Q (0-127)",
+            "minimum": 0,
+            "maximum": 127
+          },
+          "lowMidGain": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Düşük-orta kazanç (0-40)",
+            "minimum": 0,
+            "maximum": 40
+          },
+          "highMidFreq": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Yüksek-orta frekans (0-127)",
+            "minimum": 0,
+            "maximum": 127
+          },
+          "highMidQ": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Yüksek-orta Q (0-127)",
+            "minimum": 0,
+            "maximum": 127
+          },
+          "highMidGain": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Yüksek-orta kazanç (0-40)",
+            "minimum": 0,
+            "maximum": 40
+          },
+          "highShelfFreq": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Yüksek raf frekansı (0-127)",
+            "minimum": 0,
+            "maximum": 127
+          },
+          "highShelfGain": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Yüksek raf kazancı (0-40)",
+            "minimum": 0,
+            "maximum": 40
+          }
+        }
+      }
+    }
+  }
+}
