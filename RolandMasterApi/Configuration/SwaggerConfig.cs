@@ -28,9 +28,9 @@ namespace RolandMasterApi.Configuration
                     Description = "Roland VT-4 efekt cihazlarını merkezi olarak yönetmek için geliştirilmiş API servisini kullanarak tüm ses kartlarını tek bir merkezden kontrol edebilirsiniz. Bu API ile ses kartlarını kayıt etme, robot efekti, harmony, megaphone, reverb, vocoder ve equalizer gibi efektleri cihazlara uygulama işlemlerini gerçekleştirebilirsiniz.",
                     Contact = new OpenApiContact
                     {
-                        Name = "Roland VT-4 Destek Ekibi",
-                        Email = "destek@rolandvt4.com",
-                        Url = new Uri("https://rolandvt4.com/iletisim")
+                        Name = "Justtech Destek Ekibi",
+                        Email = "info@justtech.work",
+                        Url = new Uri("https://justtech.work")
                     },
                     License = new OpenApiLicense
                     {
