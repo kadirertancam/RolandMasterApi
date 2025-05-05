@@ -556,5 +556,5 @@ Evet, API'yi Docker kullanarak veya doğrudan .NET SDK ile yerel ağınızda ça
 
 Sorularınız veya önerileriniz için:
 
-- E-posta: destek@rolandvt4.com
-- Web sitesi: https://rolandvt4.com/iletisim
+- E-posta: info@justtech.work
+- Web sitesi: https://justtech.work
